@@ -5,26 +5,34 @@ import Link from 'next/link';
 import { headerData } from '@/lib/siteData';
 
 export default function Header() {
-    const [darkMode, setDarkMode] = useState(false);
     const [isNavVisible, setIsNavVisible] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const menuRef = useRef<any>(null);
     const toggleRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            setDarkMode(savedTheme === 'dark');
+        // Check if system theme detection is supported
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Set initial theme based on system preference
+            document.body.classList.toggle('dark', mediaQuery.matches);
+            
+            // Listen for system theme changes
+            const handleChange = (e: MediaQueryListEvent) => {
+                document.body.classList.toggle('dark', e.matches);
+            };
+            
+            mediaQuery.addEventListener('change', handleChange);
+            
+            return () => {
+                mediaQuery.removeEventListener('change', handleChange);
+            };
+        } else {
+            // Fallback to dark mode if system theme detection is not supported
+            document.body.classList.add('dark');
         }
-        document.body.classList.toggle('dark', darkMode);
-    }, [darkMode]);
-
-    const handleToggle = () => {
-        const newMode = !darkMode;
-        setDarkMode(newMode);
-        localStorage.setItem('theme', newMode ? 'dark' : 'light');
-    };
-
+    }, []);
 
     // Toggle the navigation visibility
     const handleNavToggle = () => {
@@ -74,38 +82,31 @@ export default function Header() {
                         </li>
                     ))}
 
-                    {/* Toggle Dark Theme */}
-                    <li className="list-none block lg:inline-block">
-                        <Link href="javascript:;" className="relative text-charcoal transition ease-linear duration-75 hover:text-black dark:text-white dark:hover:text-white lg:before:content-[''] lg:before:absolute lg:before:-bottom-[1px] lg:before:left-0 lg:before:right-0 lg:before:h-px lg:before:bg-black dark:lg:before:bg-white lg:hover:before:w-full lg:before:animate-lineOut lg:hover:before:animate-lineIn" onClick={handleToggle}>
-                            {darkMode ? 'Light Version' : 'Dark Version'}
-                        </Link>
-                    </li>
-                </ul>
-
-                {/* Toggle Menu (for Desktop) */}
-                <div
-                    className={`desktop-menu hidden lg:inline-block absolute top-20 left-0 bg-white p-7 rounded-[20px] w-[300px] invisible opacity-0 shadow-customShadow hover:shadow-customShadowHover transition ease-out duration-150 dark:bg-charcoal ${isNavVisible ? 'show' : ''}`}
-                    ref={menuRef}
-                >
-                    <h6 id="phone" className="font-outfit font-semibold dark:text-white">Phone:</h6>
-                    {headerData.phoneNumbers.map((phone, index) => (
-                        <p key={index} className="text-pColor dark:text-white/80">{phone}</p>
-                    ))}
-                    <div className="mt-4">
-                        <h6 id="email" className="font-outfit font-semibold dark:text-white">Email:</h6>
-                        <p className="text-pColor dark:text-white/80">{headerData.email}</p>
-                    </div>
-                    {/* Social icons */}
-                    <ul className="space-x-2 mt-4">
-                        {headerData.socialLinks.map((item, index) => (
-                            <li key={index} className="list-none inline-block">
-                                <Link href={item.href} className="text-charcoal hover:text-black dark:text-white dark:hover:text-white">
-                                    <i className={item.bootstrapIcons}></i>
-                                </Link>
-                            </li>
+                    {/* Toggle Menu (for Desktop) */}
+                    <div
+                        className={`desktop-menu hidden lg:inline-block absolute top-20 left-0 bg-white p-7 rounded-[20px] w-[300px] invisible opacity-0 shadow-customShadow hover:shadow-customShadowHover transition ease-out duration-150 dark:bg-charcoal ${isNavVisible ? 'show' : ''}`}
+                        ref={menuRef}
+                    >
+                        <h6 id="phone" className="font-outfit font-semibold dark:text-white">Phone:</h6>
+                        {headerData.phoneNumbers.map((phone, index) => (
+                            <p key={index} className="text-pColor dark:text-white/80">{phone}</p>
                         ))}
-                    </ul>
-                </div>
+                        <div className="mt-4">
+                            <h6 id="email" className="font-outfit font-semibold dark:text-white">Email:</h6>
+                            <p className="text-pColor dark:text-white/80">{headerData.email}</p>
+                        </div>
+                        {/* Social icons */}
+                        <ul className="space-x-2 mt-4">
+                            {headerData.socialLinks.map((item, index) => (
+                                <li key={index} className="list-none inline-block">
+                                    <Link href={item.href} className="text-charcoal hover:text-black dark:text-white dark:hover:text-white">
+                                        <i className={item.bootstrapIcons}></i>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </ul>
             </nav>
             {/* Logo */}
             <div className="absolute top-1/2 right-0 -translate-y-1/2">

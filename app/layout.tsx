@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "swiper/css";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'glightbox/dist/css/glightbox.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "glightbox/dist/css/glightbox.min.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CursorGradient from "@/components/CursorGradient";
