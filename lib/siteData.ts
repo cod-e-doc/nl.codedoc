@@ -20,8 +20,8 @@ export const headerData = {
 
 export const heroData = {
     avatarSrc: '/images/avatar.png',
-    title: "Hi There! I'm Chrisy. A Professional Digital Marketer based in Mongolia",
-    hireStatus: 'Available for hire',
+    title: "Hi there! We are a Netherlands-based IT company delivering agile and reliable solutions for finance and blockchain.",
+    hireStatus: 'Contact us',
     socialLinks: [
         { bootstrapIcons: "bi bi-facebook", href: "#" },
         { bootstrapIcons: "bi bi-instagram", href: "#" },
@@ -32,17 +32,17 @@ export const heroData = {
 export const servicesData = [
     {
         icon: 'bi bi-globe',
-        title: 'Creating marketing strategies, and campaigns',
+        title: 'We empower, support, and grow together',
         href: '/contact'
     },
     {
         icon: 'bi bi-bar-chart',
-        title: 'Enhancing brand awareness, and generating leads',
+        title: 'We adapt, evolve, and stay ahead',
         href: '/contact'
     },
     {
         title: '4,000+',
-        description: 'Satisfied customers around the world during the past 10 years',
+        description: 'We think, create, and deliver impact',
     },
 ]
 

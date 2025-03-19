@@ -110,9 +110,9 @@ export default function Header() {
             </nav>
             {/* Logo */}
             <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                <h3 className="text-3xl font-outfit font-semibold uppercase tracking-wider text-charcoal dark:text-white">
-                    <Link href="/">
-                        {headerData.logo}
+                <h3 className="max-w-32 text-3xl tracking-wider">
+                    <Link href="/" className="cursor-pointer">
+                        <img src="/images/logo.png" alt="codedoc logo" />
                     </Link>
                 </h3>
             </div>

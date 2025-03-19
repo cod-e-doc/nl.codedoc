@@ -17,19 +17,19 @@ export default {
       colors: {
         'bodyBg': '#f1f5fa',
         'darkBodyBg': '#14181a',
-        'charcoal': '#2c3943',
+        'charcoal': '#2e3a3f',
         'pColor': '#515456',
-        'customPurple': '#9C7ECE',
-        'customPurpleDarker': '#7C64A4',
-        'steelBlue': '#7E88CE',
-        'steelBlueDarker': '#646CA4',
+        'customPurple': '#ffba00',
+        'customPurpleDarker': '#fd9a00',
+        'steelBlue': '#fcc800',
+        'steelBlueDarker': '#efb100',
       },
       boxShadow: {
         'customShadow': '0 8px 34px 0 rgba(22,24,26,0.08)',
         'customShadowHover': '0 8px 38px 0 rgba(22,24,26,0.1)',
       },
       backgroundImage: {
-        'cursorGradient': "linear-gradient(#1100ff 10%, #ff00f2)",
+        'cursorGradient': "linear-gradient(#fd9a00 10%, #ff00f2)",
       },
       transitionTimingFunction: {
         'custom': 'cubic-bezier(0.165, 0.84, 0.44, 1)',
